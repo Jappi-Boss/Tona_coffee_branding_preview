@@ -17,7 +17,7 @@ jobs:
 
       - name: Copy verified branding snapshot
         env:
-          SOURCE_SHA: 347617c4d17b5b3f7c9e6c44278afa3422dc1fd4
+          SOURCE_SHA: bd1d55f5ce39e5d523a873ef594ae43b33719e42
         run: |
           git clone https://github.com/Jappi-Boss/Tona_coffee.git "$RUNNER_TEMP/tona-source"
           git -C "$RUNNER_TEMP/tona-source" checkout "$SOURCE_SHA"
@@ -29,5 +29,5 @@ jobs:
             echo "Branding snapshot is already synchronized."
             exit 0
           fi
-          git commit -m "Initialize Tona branding preview"
+          git commit -m "Sync exact Tona 2026 branding deployment"
           git push origin HEAD:main
