@@ -12,15 +12,15 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="leaf-field relative overflow-hidden border-b-8 border-primary bg-teal-deep text-white">
-      <div className="absolute -right-24 -top-28 h-72 w-72 rounded-full border-[46px] border-primary/90" />
-      <div className="relative mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+    <section className="public-hero relative overflow-hidden border-b border-white/15 bg-teal-deep text-white">
+      <div className="absolute right-[7%] top-0 hidden h-full w-px bg-white/10 lg:block" />
+      <div className="relative mx-auto max-w-[90rem] px-5 py-20 lg:px-10 lg:py-28">
         <p className="label-mono text-primary">{eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl font-display text-5xl font-black uppercase leading-[.88] text-white sm:text-6xl lg:text-7xl">
+        <h1 className="mt-5 max-w-6xl font-display text-6xl font-black uppercase leading-[.82] text-primary sm:text-7xl lg:text-[7.6rem]">
           {title}
         </h1>
         {intro && (
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/68">
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-white/66 sm:text-lg">
             {intro}
           </p>
         )}

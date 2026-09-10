@@ -9,10 +9,7 @@ import {
   Clock,
   MapPin,
 } from "lucide-react";
-import {
-  beansImage as beansImg,
-  heroCeremonyImage as heroImg,
-} from "@/lib/site-images";
+import { beansImage as beansImg } from "@/lib/site-images";
 import { waLink } from "@/lib/tona";
 import { PRODUCT_IMAGES } from "@/lib/product-images";
 import { EventRegistrationDialog } from "@/components/site/EventRegistrationForm";
@@ -71,36 +68,42 @@ function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative isolate min-h-[620px] overflow-hidden bg-black text-white sm:min-h-[680px] lg:min-h-[760px]">
-        <img
-          src={heroImg}
-          alt="Tona Coffee specialty coffee packaging with roasted coffee beans"
-          width={1536}
-          height={864}
-          fetchPriority="high"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-right"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/80 via-[42%] to-black/5" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+      <section className="public-hero relative isolate min-h-[680px] overflow-hidden bg-black text-white lg:min-h-[820px]">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_42%,rgba(239,74,40,.13),transparent_35%)]" />
+        <div className="absolute inset-x-0 top-[54%] -z-10 border-t border-white/10" />
 
-        <div className="mx-auto flex min-h-[620px] max-w-7xl items-center px-5 py-16 sm:min-h-[680px] lg:min-h-[760px] lg:px-8">
-          <div className="max-w-2xl">
-            <h1 className="font-display text-5xl font-black uppercase leading-[.9] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl">
-              Stay for Tona.
+        <div className="mx-auto grid min-h-[680px] max-w-[90rem] items-center gap-8 px-5 py-16 lg:min-h-[820px] lg:grid-cols-[1fr_.82fr_1fr] lg:px-10">
+          <div className="z-10 self-end pb-2 lg:self-center lg:pb-0">
+            <p className="label-mono text-white/55">Ethiopia · Addis Ababa</p>
+            <h1 className="mt-5 font-display text-[clamp(4.5rem,10vw,10rem)] font-black uppercase leading-[.74] tracking-[-.035em] text-primary">
+              Stay for
               <br />
-              <span className="text-primary">Stay for the moment.</span>
+              Tona.
             </h1>
-            <div className="mt-7 h-1 w-14 bg-primary" />
-            <p className="mt-7 max-w-xl text-base leading-8 text-white/85 sm:text-lg">
-              Ethiopian coffee is more than a drink—it&apos;s culture,
-              connection, and centuries of tradition in every cup. From our
-              farms to your table, we bring you specialty coffee that tells a
-              story worth sharing.
+          </div>
+
+          <div className="relative order-first mx-auto flex w-full max-w-md items-center justify-center self-end lg:order-none lg:self-center">
+            <div className="absolute inset-1/4 rounded-full bg-primary/15 blur-[70px]" />
+            <img
+              src="https://tona-coffee-two.vercel.app/framer-hero-illustration.png"
+              alt="Ethiopian coffee ceremony illustrated in Tona's signature style"
+              width={1416}
+              height={1341}
+              fetchPriority="high"
+              className="relative w-full object-contain"
+            />
+          </div>
+
+          <div className="z-10 self-start lg:self-center lg:pt-32">
+            <p className="max-w-md text-base leading-7 text-white/72">
+              Ethiopian coffee is more than a drink. It is culture, connection,
+              and centuries of tradition in every cup.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <p className="label-mono mt-5 text-primary">Stay for the moment</p>
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/products"
-                className="brand-button inline-flex items-center gap-2 bg-primary px-7 py-4 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5"
+                className="brand-button inline-flex items-center gap-2 bg-primary px-7 py-4 text-xs font-bold text-black transition-colors hover:bg-white"
               >
                 Explore Our Coffee <ArrowRight className="h-4 w-4" />
               </Link>
@@ -108,7 +111,7 @@ function Home() {
                 href={waLink("Hi Tona, I'd like to place an order.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="brand-button inline-flex items-center gap-2 border border-primary px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="brand-button inline-flex items-center gap-2 border border-white/35 px-7 py-4 text-xs font-bold text-white transition-colors hover:border-primary hover:text-primary"
               >
                 <MessageCircle className="h-4 w-4" /> Order on WhatsApp
               </a>

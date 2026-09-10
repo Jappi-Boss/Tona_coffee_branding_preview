@@ -46,13 +46,10 @@ export function EventRegistrationForm({
   }
 
   const inputClass =
-    "mt-2 w-full border border-[#e4d4ba]/45 bg-[#fff9ef] px-4 py-3 text-sm text-[#151411] outline-none transition placeholder:text-[#151411]/45 focus:border-[#ffb000] focus:ring-1 focus:ring-[#ffb000]";
+    "mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/15";
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="event-registration-form text-[#fffdf8]"
-    >
+    <form onSubmit={handleSubmit} className="text-foreground">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-semibold sm:col-span-2">
           Choose an event
@@ -92,7 +89,7 @@ export function EventRegistrationForm({
         </label>
         <label className="text-sm font-semibold">
           Email{" "}
-          <span className="font-normal text-[#fffdf8]/55">(optional)</span>
+          <span className="font-normal text-muted-foreground">(optional)</span>
           <input
             name="email"
             type="email"
@@ -115,7 +112,7 @@ export function EventRegistrationForm({
         </label>
         <label className="text-sm font-semibold sm:col-span-2">
           Note{" "}
-          <span className="font-normal text-[#fffdf8]/55">(optional)</span>
+          <span className="font-normal text-muted-foreground">(optional)</span>
           <textarea
             name="note"
             rows={3}
@@ -128,12 +125,12 @@ export function EventRegistrationForm({
       <button
         type="submit"
         disabled={busy}
-        className="brand-button mt-5 inline-flex w-full items-center justify-center gap-2 bg-[#ef4a28] px-6 py-4 text-sm font-bold text-white transition-colors hover:bg-[#ffb000] hover:text-[#151411] disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.01]"
       >
         {busy ? "Submitting…" : "Register to attend"}
         <CalendarCheck className="h-4 w-4" />
       </button>
-      <p className="mt-3 text-center text-xs text-[#fffdf8]/55">
+      <p className="mt-3 text-center text-xs text-muted-foreground">
         Registration is confirmed by the Tona team.
       </p>
     </form>
@@ -166,20 +163,20 @@ export function EventRegistrationDialog({
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[100] bg-[#090908]/80 backdrop-blur-md data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:animate-in data-[state=open]:fade-in" />
-        <Dialog.Content className="event-dialog order-dialog fixed left-1/2 top-1/2 z-[110] max-h-[90vh] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-[#e4d4ba]/35 bg-[#061b18] p-6 text-[#fffdf8] shadow-2xl focus:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-95 sm:p-8">
+        <Dialog.Overlay className="fixed inset-0 z-[100] bg-foreground/65 backdrop-blur-sm data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:animate-in data-[state=open]:fade-in" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-[110] max-h-[90vh] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border border-border bg-card p-6 text-foreground shadow-2xl focus:outline-none sm:p-8">
           <div className="flex items-start justify-between gap-5 pr-8">
             <div>
               <p className="label-mono text-primary">Reserve your place</p>
-              <Dialog.Title className="mt-3 font-display text-3xl font-black uppercase leading-none text-[#fffdf8] sm:text-4xl">
+              <Dialog.Title className="mt-3 font-display text-2xl font-bold sm:text-3xl">
                 Event registration
               </Dialog.Title>
-              <Dialog.Description className="mt-3 max-w-lg text-sm leading-relaxed text-[#fffdf8]/65">
+              <Dialog.Description className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
                 Enter your details below. Your selected event is already filled
                 in, and your registration will appear in Tona's dashboard.
               </Dialog.Description>
             </div>
-            <span className="hidden border border-[#e4d4ba]/35 bg-[#e4d4ba] p-3 text-[#151411] sm:block">
+            <span className="hidden rounded-full bg-primary/10 p-3 text-primary sm:block">
               <Users className="h-5 w-5" />
             </span>
           </div>
@@ -188,7 +185,7 @@ export function EventRegistrationDialog({
             <button
               type="button"
               aria-label="Close registration form"
-              className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center border border-[#e4d4ba]/35 bg-[#e4d4ba] text-[#151411] transition-colors hover:border-[#ffb000] hover:bg-[#ffb000]"
+              className="absolute right-5 top-5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
             >
               <X className="h-4 w-4" />
             </button>

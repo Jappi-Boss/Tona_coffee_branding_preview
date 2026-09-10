@@ -50,8 +50,8 @@ export function ProductCard({ product }: { product: PublicProduct }) {
   }
 
   return (
-    <article className="product-card group flex flex-col overflow-hidden border border-white/15 bg-[#061b18] text-[#fffdf8] transition-all">
-      <div className="relative h-48 overflow-hidden bg-[#102520]">
+    <article className="group flex flex-col overflow-hidden border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/60 hover:shadow-xl">
+      <div className="relative h-44 overflow-hidden bg-muted">
         <img
           src={
             imageFailed ? fallbackImage : (product.imageUrl ?? fallbackImage)
@@ -59,23 +59,21 @@ export function ProductCard({ product }: { product: PublicProduct }) {
           alt={`${product.name} black coffee with roasted coffee beans`}
           width={720}
           height={360}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={() => setImageFailed(true)}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#061b18]/25 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/10 to-transparent" />
+        <span className="label-mono absolute left-5 top-5 border-l-4 border-primary bg-black/80 px-3 py-1.5 text-white">
+          {product.process}
+        </span>
+        <span className="absolute bottom-5 left-6 font-display text-3xl font-bold text-primary-foreground">
+          {product.name}
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-start justify-between gap-4">
-          <p className="label-mono text-[#ef4a28]">{product.process}</p>
-          <p className="label-mono text-right text-[#fffdf8]/72">
-            {product.region}
-          </p>
-        </div>
-        <h3 className="mt-4 font-display text-3xl font-black text-[#fffdf8]">
-          {product.name}
-        </h3>
-        <p className="mt-3 text-sm leading-relaxed text-[#fffdf8]/82">
+        <p className="label-mono text-muted-foreground">{product.region}</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {product.description}
         </p>
 
@@ -83,20 +81,20 @@ export function ProductCard({ product }: { product: PublicProduct }) {
           {product.tastingNotes.map((n) => (
             <span
               key={n}
-              className="border border-[#e4d4ba] bg-[#e4d4ba] px-3 py-1 text-[.68rem] font-bold uppercase tracking-[.08em] text-[#151411]"
+              className="rounded-sm border border-border bg-secondary px-3 py-1 text-xs font-medium text-foreground/80"
             >
               {n}
             </span>
           ))}
         </div>
 
-        <p className="label-mono mt-4 text-[#fffdf8]/55">
+        <p className="mt-3 text-xs text-muted-foreground">
           {product.altitude
             ? `Altitude ${product.altitude}`
             : "Ethiopian origin"}
         </p>
 
-        <div className="mt-6 space-y-4 border-t border-white/15 pt-6">
+        <div className="mt-6 space-y-4">
           <Choice
             label="Size"
             options={sizes.length ? sizes : [...SIZES]}
@@ -112,12 +110,12 @@ export function ProductCard({ product }: { product: PublicProduct }) {
         </div>
 
         <div className="mt-6 flex items-center gap-3">
-          <div className="flex items-center gap-1 border border-white/25 p-1">
+          <div className="flex items-center gap-1 rounded-full border border-border p-1">
             <button
               type="button"
               aria-label={`Decrease ${product.name} quantity`}
               onClick={() => setQty((q) => Math.max(1, q - 1))}
-              className="inline-flex h-8 w-8 items-center justify-center text-[#fffdf8] hover:bg-white/10"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-secondary"
             >
               <Minus className="h-4 w-4" />
             </button>
@@ -126,7 +124,7 @@ export function ProductCard({ product }: { product: PublicProduct }) {
               type="button"
               aria-label={`Increase ${product.name} quantity`}
               onClick={() => setQty((q) => q + 1)}
-              className="inline-flex h-8 w-8 items-center justify-center text-[#fffdf8] hover:bg-white/10"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full hover:bg-secondary"
             >
               <Plus className="h-4 w-4" />
             </button>
@@ -134,7 +132,7 @@ export function ProductCard({ product }: { product: PublicProduct }) {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="brand-button inline-flex flex-1 items-center justify-center gap-2 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-colors hover:bg-[#ffb000] hover:text-[#151411]"
+            className="brand-button inline-flex flex-1 items-center justify-center gap-2 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5"
           >
             <ShoppingBag className="h-4 w-4" />
             Order now
@@ -144,12 +142,12 @@ export function ProductCard({ product }: { product: PublicProduct }) {
 
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 z-[100] bg-[#090908]/80 backdrop-blur-md data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:animate-in data-[state=open]:fade-in" />
-          <Dialog.Content className="order-dialog fixed left-1/2 top-1/2 z-[110] max-h-[90vh] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-[#e4d4ba]/35 bg-[#061b18] p-6 text-[#fffdf8] shadow-2xl outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-95 sm:p-8">
-            <Dialog.Title className="font-display text-3xl font-black uppercase leading-none text-[#fffdf8] sm:text-4xl">
+          <Dialog.Overlay className="fixed inset-0 z-[100] bg-foreground/65 backdrop-blur-sm" />
+          <Dialog.Content className="fixed left-1/2 top-1/2 z-[110] max-h-[90vh] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-3xl border bg-card p-6 shadow-2xl sm:p-8">
+            <Dialog.Title className="font-display text-3xl font-bold text-teal">
               Order {product.name}
             </Dialog.Title>
-            <Dialog.Description className="mt-3 max-w-md text-sm leading-relaxed text-[#fffdf8]/65">
+            <Dialog.Description className="mt-2 text-sm text-muted-foreground">
               {qty} × {size}, {format}. Your order will appear directly in
               Tona's dashboard.
             </Dialog.Description>
@@ -157,7 +155,7 @@ export function ProductCard({ product }: { product: PublicProduct }) {
               <button
                 type="button"
                 aria-label="Close order form"
-                className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center border border-[#e4d4ba]/35 bg-[#e4d4ba] text-[#151411] transition-colors hover:border-[#ffb000] hover:bg-[#ffb000]"
+                className="absolute right-5 top-5 rounded-full bg-secondary p-2"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -182,17 +180,17 @@ export function ProductCard({ product }: { product: PublicProduct }) {
                 type="email"
                 autoComplete="email"
               />
-              <label className="text-sm font-semibold text-[#fffdf8]">
+              <label className="text-sm font-semibold text-teal">
                 Note (optional)
                 <textarea
                   name="notes"
                   rows={3}
-                  className="mt-2 w-full resize-none border border-[#e4d4ba]/45 bg-[#fff9ef] px-4 py-3 font-normal text-[#151411] outline-none transition-colors focus:border-[#ffb000] focus:ring-1 focus:ring-[#ffb000]"
+                  className="mt-2 w-full resize-none rounded-xl border bg-background px-4 py-3 font-normal outline-none focus:border-primary"
                 />
               </label>
               <button
                 disabled={busy}
-                className="brand-button mt-2 inline-flex items-center justify-center gap-2 bg-[#ef4a28] px-6 py-4 text-sm font-bold text-white transition-colors hover:bg-[#ffb000] hover:text-[#151411] disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white disabled:opacity-60"
               >
                 <ShoppingBag className="h-4 w-4" />
                 {busy ? "Submitting…" : "Place order"}
@@ -210,11 +208,11 @@ function OrderField({
   ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
   return (
-    <label className="text-sm font-semibold text-[#fffdf8]">
+    <label className="text-sm font-semibold text-teal">
       {label}
       <input
         {...props}
-        className="mt-2 h-12 w-full border border-[#e4d4ba]/45 bg-[#fff9ef] px-4 font-normal text-[#151411] outline-none transition-colors focus:border-[#ffb000] focus:ring-1 focus:ring-[#ffb000]"
+        className="mt-2 h-12 w-full rounded-xl border bg-background px-4 font-normal outline-none focus:border-primary"
       />
     </label>
   );
@@ -242,7 +240,7 @@ function Choice({
 }) {
   return (
     <div>
-      <p className="label-mono mb-2 text-[#fffdf8]/55">{label}</p>
+      <p className="label-mono mb-2 text-muted-foreground">{label}</p>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
           <button
@@ -250,10 +248,10 @@ function Choice({
             type="button"
             onClick={() => onChange(o)}
             aria-pressed={value === o}
-            className={`border px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+            className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-colors ${
               value === o
-                ? "border-[#ef4a28] bg-[#ef4a28] text-[#fffdf8]"
-                : "border-white/25 text-[#fffdf8]/72 hover:border-[#ffb000] hover:text-[#ffb000]"
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border text-foreground/70 hover:border-primary/50"
             }`}
           >
             {o}

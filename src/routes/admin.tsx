@@ -210,7 +210,7 @@ function AdminDashboard() {
   );
 
   return (
-    <div className="admin-dashboard min-h-screen bg-sand text-foreground lg:grid lg:grid-cols-[260px_1fr]">
+    <div className="min-h-screen bg-sand text-foreground lg:grid lg:grid-cols-[260px_1fr]">
       <aside
         className={`${mobileNav ? "flex" : "hidden"} leaf-field fixed inset-0 z-50 flex-col border-r border-white/10 bg-teal-deep text-white lg:sticky lg:top-0 lg:flex lg:h-screen`}
       >
@@ -1714,17 +1714,17 @@ function Modal({
 }) {
   return (
     <div
-      className="admin-modal-overlay fixed inset-0 z-[70] flex items-center justify-center bg-[#090908]/80 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-teal/75 p-4 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
-      <div className="admin-modal max-h-[92vh] w-full max-w-2xl overflow-y-auto border border-[#e4d4ba]/35 bg-[#061b18] text-[#fffdf8] shadow-2xl">
-        <div className="admin-modal__header sticky top-0 z-10 flex items-center justify-between border-b border-white/15 bg-[#061b18] px-6 py-5 text-white">
+      <div className="max-h-[92vh] w-full max-w-2xl overflow-y-auto border bg-sand shadow-2xl">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b-4 border-primary bg-teal-deep px-6 py-5 text-white">
           <h2 className="text-3xl font-black uppercase text-white">{title}</h2>
           <button
             onClick={close}
-            className="inline-flex h-10 w-10 items-center justify-center border border-[#e4d4ba]/35 bg-[#e4d4ba] text-[#151411] transition-colors hover:border-[#ffb000] hover:bg-[#ffb000]"
+            className="rounded-md border border-white/20 bg-white/10 p-2 text-white"
             aria-label="Close"
           >
             <X className="h-5 w-5" />

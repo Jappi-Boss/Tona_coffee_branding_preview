@@ -457,11 +457,11 @@
   }
 }
 
-/* Tona reference-site styling. Scoped to public pages so the admin dashboard
- * and every operational workflow retain their existing presentation. */
+/* Public-site identity from the Tona 2026 brand system. The variables are
+ * intentionally scoped so the operations dashboard keeps its own UI system. */
 .public-site {
   --tona-black: #090908;
-  --tona-ink: #151411;
+  --tona-ink: #131311;
   --tona-sun: #ffb000;
   --tona-ember: #ef4a28;
   --tona-cream: #fffdf8;
@@ -475,63 +475,33 @@
   --teal: oklch(0.105 0.005 75);
   --teal-deep: oklch(0.075 0.004 75);
   --teal-foreground: oklch(0.985 0.01 83);
+  --secondary: oklch(0.92 0.025 79);
+  --muted: oklch(0.93 0.018 78);
+  --muted-foreground: oklch(0.45 0.018 60);
   --sand: oklch(0.88 0.045 76);
   --sand-deep: oklch(0.83 0.055 75);
-  --secondary: oklch(0.93 0.025 79);
-  --muted: oklch(0.94 0.018 78);
-  --muted-foreground: oklch(0.45 0.018 60);
-  --border: oklch(0.73 0.024 72);
+  --border: oklch(0.72 0.025 72);
   background: var(--tona-cream);
 }
 
-.public-site ::selection {
-  color: var(--tona-black);
-  background: var(--tona-sun);
+.public-site main {
+  overflow: clip;
 }
 
-.public-site h1,
-.public-site h2,
-.public-site h3,
-.public-site h4 {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 0.9;
+.public-site main > section {
+  border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
 }
 
-.public-site h1 {
-  font-size: clamp(3.8rem, 7.4vw, 7.25rem);
-}
-
-.public-site h2 {
-  font-size: clamp(2.75rem, 4.7vw, 4.9rem);
-}
-
-.public-site h3 {
-  letter-spacing: -0.015em;
-}
-
-.public-site .label-mono {
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-}
-
-.public-site .text-primary {
-  color: var(--tona-sun);
-}
-
-.public-site .bg-primary {
-  background-color: var(--tona-ember);
-}
-
-.public-site .bg-primary.text-primary-foreground {
+.public-site main > section:not(.public-hero):not(.bg-sand):not(.bg-teal) {
+  --background: oklch(0.075 0.004 75);
+  --foreground: oklch(0.985 0.01 83);
+  --card: oklch(0.115 0.006 73);
+  --card-foreground: oklch(0.985 0.01 83);
+  --secondary: oklch(0.18 0.008 70);
+  --muted-foreground: oklch(0.72 0.014 76);
+  --border: oklch(0.34 0.012 72);
+  background: var(--tona-black);
   color: var(--tona-cream);
-}
-
-.public-site .border-primary {
-  border-color: var(--tona-ember);
 }
 
 .public-site .bg-teal,
@@ -543,39 +513,84 @@
   background-color: var(--tona-parchment);
 }
 
-.public-site .leaf-field {
-  background-image:
-    radial-gradient(circle at 80% 18%, rgba(239, 74, 40, 0.1), transparent 24rem),
-    linear-gradient(var(--tona-black), var(--tona-black));
+.public-site .bg-primary {
+  background-color: var(--tona-ember);
 }
 
-.public-site header {
-  border-color: rgba(255, 253, 248, 0.14);
-  background-color: rgba(9, 9, 8, 0.96);
+.public-site .bg-primary.text-primary-foreground {
+  color: var(--tona-cream);
 }
 
-.public-site header nav a {
-  position: relative;
-  border-radius: 0;
-  background: transparent;
-  color: rgba(255, 253, 248, 0.66);
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-}
-
-.public-site header nav a:hover,
-.public-site header nav a.active {
-  background: transparent;
+.public-site .text-primary {
   color: var(--tona-sun);
 }
 
-.public-site header nav a::after {
+.public-site .border-primary {
+  border-color: var(--tona-ember);
+}
+
+.public-site .label-mono {
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+
+.public-site h1,
+.public-site h2,
+.public-site h3,
+.public-site h4 {
+  letter-spacing: -0.025em;
+}
+
+.public-site h2 {
+  font-size: clamp(3rem, 5.6vw, 6rem);
+  line-height: 0.84;
+}
+
+.public-site main section:not(.public-hero) {
+  padding-block: clamp(5.5rem, 9vw, 9rem);
+}
+
+.public-site main section > div[class*="max-w-7xl"],
+.public-site main section > div[class*="max-w-4xl"],
+.public-site main section > div[class*="max-w-3xl"] {
+  max-width: 90rem;
+  padding-inline: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.public-site :is(.rounded-full, .rounded-3xl, .rounded-\[2rem\], .rounded-2xl, .rounded-xl) {
+  border-radius: 0;
+}
+
+.public-site article,
+.public-site form {
+  box-shadow: none;
+}
+
+.public-site article:hover {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.public-site .brand-button,
+.public-site button,
+.public-site a {
+  text-underline-offset: 0.25em;
+}
+
+.public-header {
+  min-height: 5rem;
+}
+
+.public-nav-link {
+  position: relative;
+}
+
+.public-nav-link::after {
   position: absolute;
-  right: 0.75rem;
+  right: 0.85rem;
   bottom: 0.15rem;
-  left: 0.75rem;
+  left: 0.85rem;
   height: 2px;
   content: "";
   background: var(--tona-ember);
@@ -584,354 +599,50 @@
   transition: transform 220ms ease;
 }
 
-.public-site header nav a:hover::after,
-.public-site header nav a.active::after {
+.public-nav-link:hover::after,
+.public-nav-link.active::after {
   transform: scaleX(1);
 }
 
-.public-site .brand-button,
-.public-site main button.bg-primary,
-.public-site main a.bg-primary {
+.public-hero {
+  background-color: var(--tona-black);
+}
+
+.public-hero .text-primary {
+  color: var(--tona-sun);
+}
+
+.public-whatsapp {
   border-radius: 0;
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  box-shadow: none;
+  border-left: 3px solid var(--tona-ember);
 }
 
-.public-site .brand-button:hover,
-.public-site main button.bg-primary:hover,
-.public-site main a.bg-primary:hover {
-  filter: brightness(1.06);
-  box-shadow: 0 0 0 1px var(--tona-sun);
-}
-
-.public-site main article,
-.public-site main .rounded-2xl.border,
-.public-site main .rounded-3xl.border {
-  transition:
-    border-color 240ms ease,
-    background-color 240ms ease,
-    color 240ms ease,
-    box-shadow 280ms ease,
-    transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.public-site main article:hover,
-.public-site main .rounded-2xl.border:hover,
-.public-site main .rounded-3xl.border:hover {
-  border-color: var(--tona-ember);
-  box-shadow: 0 18px 48px rgba(9, 9, 8, 0.16);
-  transform: translateY(-0.25rem);
-}
-
-.public-site .product-card {
-  position: relative;
-  border-radius: 0;
-  background-color: #061b18;
-  box-shadow: 0 12px 32px rgba(9, 9, 8, 0.12);
-}
-
-.public-site .product-card::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  content: "";
-  background: var(--tona-sun);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.public-site .product-card:hover {
-  border-color: var(--tona-ember);
-  background-color: #08231f;
-  box-shadow: 0 22px 54px rgba(9, 9, 8, 0.28);
-}
-
-.public-site .product-card:hover::after {
-  transform: scaleX(1);
-}
-
-.public-site .product-card h3 {
-  font-size: 2rem;
-  line-height: 0.9;
+.public-site .leaf-field {
+  background-image: none;
 }
 
 .public-site footer {
-  border-color: var(--tona-ember);
-  background-color: var(--tona-black);
+  background: var(--tona-black);
+  border-top-width: 1px;
+  border-top-color: rgba(255, 255, 255, 0.16);
 }
 
 .public-site footer h4 {
   color: var(--tona-sun);
 }
 
+.public-site input,
+.public-site select,
+.public-site textarea {
+  border-radius: 0;
+}
+
 @media (max-width: 767px) {
-  .public-site h1 {
-    font-size: clamp(3.35rem, 16vw, 5.25rem);
-  }
-
   .public-site h2 {
-    font-size: clamp(2.5rem, 12vw, 3.8rem);
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
   }
 
-  .public-site header nav a::after {
-    right: 0.75rem;
-    left: 0.75rem;
+  .public-site main section:not(.public-hero) {
+    padding-block: 4.5rem;
   }
 }
-
-.order-dialog {
-  border-radius: 0;
-  box-shadow:
-    0 0 0 1px rgba(239, 74, 40, 0.18),
-    0 32px 90px rgba(0, 0, 0, 0.55);
-}
-
-.order-dialog::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 4px;
-  content: "";
-  background: linear-gradient(90deg, #ef4a28 0 78%, #ffb000 78% 100%);
-}
-
-.order-dialog label {
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.order-dialog input,
-.order-dialog textarea {
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 0.95rem;
-  letter-spacing: normal;
-  text-transform: none;
-}
-
-.event-registration-form label {
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.event-registration-form input,
-.event-registration-form select,
-.event-registration-form textarea {
-  font-family: Inter, system-ui, sans-serif;
-  letter-spacing: normal;
-  text-transform: none;
-}
-
-.admin-dashboard {
-  --admin-ink: #090908;
-  --admin-green: #061b18;
-  --admin-paper: #f1e7d7;
-  --admin-cream: #fff9ef;
-  --admin-ember: #ef4a28;
-  --admin-sun: #ffb000;
-  background-color: var(--admin-paper);
-}
-
-.admin-dashboard aside,
-.admin-dashboard > main > header {
-  background-color: var(--admin-ink);
-}
-
-.admin-dashboard aside nav button,
-.admin-dashboard aside > div:last-child button,
-.admin-dashboard .brand-button,
-.admin-dashboard th {
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.admin-dashboard aside nav button {
-  border-radius: 0;
-}
-
-.admin-dashboard aside nav button:hover {
-  color: var(--admin-sun);
-}
-
-.admin-dashboard aside nav button[class*="bg-primary"] {
-  border-color: var(--admin-ember);
-  background-color: var(--admin-ember);
-  color: white;
-}
-
-.admin-dashboard > main > header {
-  border-color: var(--admin-ember);
-}
-
-.admin-dashboard h1,
-.admin-dashboard h2,
-.admin-dashboard h3 {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
-  font-weight: 900;
-}
-
-.admin-dashboard main article,
-.admin-dashboard main section.overflow-hidden,
-.admin-dashboard main > div > section > div.overflow-hidden,
-.admin-dashboard table {
-  border-radius: 0;
-}
-
-.admin-dashboard main article,
-.admin-dashboard main section > div.overflow-hidden,
-.admin-dashboard main button.border.bg-white {
-  background-color: var(--admin-cream);
-}
-
-.admin-dashboard main article,
-.admin-dashboard main section > div.overflow-hidden {
-  border-color: rgba(9, 9, 8, 0.18);
-  box-shadow: 0 10px 28px rgba(9, 9, 8, 0.08);
-  transition:
-    border-color 220ms ease,
-    box-shadow 260ms ease,
-    transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.admin-dashboard main article:hover,
-.admin-dashboard main section > div.overflow-hidden:hover {
-  border-color: var(--admin-ember);
-  box-shadow: 0 18px 42px rgba(9, 9, 8, 0.14);
-}
-
-.admin-dashboard thead,
-.admin-dashboard section > div.border-b-4 {
-  background-color: var(--admin-green);
-  border-color: var(--admin-ember);
-}
-
-.admin-dashboard tbody tr {
-  transition: background-color 180ms ease;
-}
-
-.admin-dashboard tbody tr:hover {
-  background-color: rgba(255, 176, 0, 0.08);
-}
-
-.admin-dashboard input:not([type="checkbox"]):not([type="file"]),
-.admin-dashboard select,
-.admin-dashboard textarea {
-  border-radius: 0;
-}
-
-.admin-dashboard .brand-button,
-.admin-dashboard button.rounded-md,
-.admin-dashboard button.rounded-xl {
-  border-radius: 0;
-}
-
-.admin-dashboard .brand-button:hover {
-  background-color: var(--admin-sun);
-  color: var(--admin-ink);
-  box-shadow: 0 0 0 1px var(--admin-ink);
-}
-
-.admin-modal {
-  position: relative;
-  border-radius: 0;
-  box-shadow:
-    0 0 0 1px rgba(239, 74, 40, 0.18),
-    0 32px 90px rgba(0, 0, 0, 0.55);
-}
-
-.admin-modal::before {
-  position: absolute;
-  z-index: 20;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 4px;
-  content: "";
-  background: linear-gradient(90deg, #ef4a28 0 78%, #ffb000 78% 100%);
-}
-
-.admin-modal__header h2 {
-  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.admin-modal label {
-  color: #fffdf8;
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.admin-modal input:not([type="checkbox"]):not([type="file"]),
-.admin-modal select,
-.admin-modal textarea {
-  border-radius: 0;
-  border-color: rgba(228, 212, 186, 0.45);
-  background-color: #fff9ef;
-  color: #151411;
-  font-family: Inter, system-ui, sans-serif;
-  letter-spacing: normal;
-  text-transform: none;
-}
-
-.admin-modal input:focus,
-.admin-modal select:focus,
-.admin-modal textarea:focus {
-  border-color: #ffb000;
-  box-shadow: 0 0 0 1px #ffb000;
-}
-
-.admin-modal .text-muted-foreground {
-  color: rgba(255, 253, 248, 0.58);
-}
-
-.admin-modal form > div.border-t {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.admin-modal form > div.border-t button[type="button"] {
-  border-radius: 0;
-  border-color: rgba(228, 212, 186, 0.45);
-  background-color: #e4d4ba;
-  color: #151411;
-}
-
-.admin-modal .brand-button {
-  border-radius: 0;
-  background-color: #ef4a28;
-  color: white;
-  font-family: "IBM Plex Mono", Consolas, monospace;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.admin-modal .brand-button:hover {
-  background-color: #ffb000;
-  color: #151411;
-}
-
-.admin-modal label:has(input[type="file"]),
-.admin-modal div.rounded-md.border.bg-white\/60 {
-  border-radius: 0;
-  border-color: rgba(228, 212, 186, 0.45);
-  background-color: rgba(228, 212, 186, 0.12);
-  color: #fffdf8;
-}
-

@@ -17,8 +17,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-teal-deep/95 text-white backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 lg:px-8">
+    <header className="public-header sticky top-0 z-50 border-b border-white/15 bg-teal-deep/95 text-white backdrop-blur-md">
+      <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-6 px-5 py-3 lg:px-10">
         <Link
           to="/"
           aria-label="Tona Coffee home"
@@ -33,7 +33,7 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="rounded-md px-3.5 py-2 text-sm font-semibold uppercase tracking-[.04em] text-white/65 transition-colors hover:bg-white/10 hover:text-white [&.active]:bg-primary [&.active]:text-white"
+              className="public-nav-link px-3.5 py-2 text-xs font-semibold uppercase tracking-[.12em] text-white/70 transition-colors hover:text-primary [&.active]:text-primary"
             >
               {item.label}
             </Link>
@@ -45,7 +45,7 @@ export function SiteHeader() {
             href={waLink("Hi Tona, I'd like to place an order.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="brand-button hidden items-center gap-2 bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
+            className="brand-button hidden items-center gap-2 border border-primary bg-transparent px-5 py-2.5 text-xs font-bold text-white transition-colors hover:bg-primary hover:text-black sm:inline-flex"
           >
             <MessageCircle className="h-4 w-4" />
             Order on WhatsApp
@@ -70,7 +70,7 @@ export function SiteHeader() {
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
               onClick={() => setOpen(false)}
-              className="block rounded-md px-3 py-3 text-base font-semibold uppercase tracking-wide text-white/75 [&.active]:bg-primary [&.active]:text-white"
+              className="block border-b border-white/10 px-1 py-3 text-sm font-semibold uppercase tracking-[.12em] text-white/75 [&.active]:text-primary"
             >
               {item.label}
             </Link>
@@ -79,7 +79,7 @@ export function SiteHeader() {
             href={waLink("Hi Tona, I'd like to place an order.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="brand-button mt-2 flex items-center justify-center gap-2 bg-primary px-5 py-3 text-sm font-bold text-primary-foreground"
+            className="brand-button mt-4 flex items-center justify-center gap-2 bg-primary px-5 py-3 text-sm font-bold text-black"
           >
             <MessageCircle className="h-4 w-4" />
             Order on WhatsApp

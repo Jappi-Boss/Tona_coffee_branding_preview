@@ -33,7 +33,7 @@ export function PageMotion({ pathname }: PageMotionProps) {
     ).matches;
     const targets = Array.from(
       main.querySelectorAll<HTMLElement>(MOTION_TARGET_SELECTOR),
-    );
+    ).filter((target) => !target.closest(".public-hero"));
     let animationFrame: number | undefined;
     let fallbackTimer: number | undefined;
     let observer: IntersectionObserver | undefined;
